@@ -4,21 +4,21 @@ export const products = [
       name: "Document Envelope",
       price: 50,
       description: "Secure delivery of A4 documents.",
-      image: "https://via.placeholder.com/150?text=Document+Envelope"
+      image: "https://cdn1.brandability.co.za/2025/371996/PVC%20Document%20Envelope%20Transparent-519x519.webp"
     },
     {
       id: "2",
       name: "Small Box",
       price: 100,
       description: "Fits gadgets and accessories.",
-      image: "https://via.placeholder.com/150?text=Small+Box"
+      image: "https://cdn1.brandability.co.za/2025/371640/Altitude%20Bosley%20Gift%20Box%20A%20Open-519x519.webp"
     },
     {
       id: "3",
       name: "Medium Parcel",
       price: 150,
       description: "Great for clothing and electronics.",
-      image: "https://via.placeholder.com/150?text=Medium+Parcel"
+      image: "https://wrapit.co.za/wp-content/uploads/2023/08/IMG_3105-Edit-scaled.jpg"
     },
     {
       id: "4",
