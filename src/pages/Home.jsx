@@ -20,7 +20,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          Welcome to DeliverEase
+          Welcome to JoziDrop
         </motion.h1>
         <motion.p
           className="text-xl"

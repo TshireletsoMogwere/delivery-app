@@ -10,10 +10,10 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full fixed top-0 left-0 flex justify-between items-center p-4 shadow bg-white z-50">
+    <header className=" w-full fixed top-0 left-0 flex justify-between items-center p-4 shadow bg-white z-50">
       {/* Logo and Link to Home */}
       <Link to="/" className="flex items-center gap-2 font-bold text-xl">
-        <PackageCheck size={24} /> DeliverEase
+        <PackageCheck size={24} /> JoziDrop
       </Link>
 
       {/* Navigation and User Icon in One Div */}
