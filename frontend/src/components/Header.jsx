@@ -1,12 +1,13 @@
 import { PackageCheck, User, Home, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import AuthModal from "./AuthModal";
 
 export default function Header() {
-  const [showProfile, setShowProfile] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   const toggleProfileMenu = () => {
-    setShowProfile((prev) => !prev);
+    setIsAuthOpen(true);
   };
 
   return (
@@ -33,18 +34,10 @@ export default function Header() {
           <button onClick={toggleProfileMenu} className="text-gray-600 hover:text-blue-600">
             <User size={24} />
           </button>
+             {/* Auth Modal */}
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
 
-          {/* Profile Menu */}
-          {showProfile && (
-            <div className="absolute top-12 right-0 bg-white text-gray-800 rounded-lg shadow-md p-4 w-40">
-              <p className="text-center font-semibold">User Profile</p>
-              <ul className="space-y-2">
-                <li className="hover:text-blue-600 cursor-pointer">My Account</li>
-                <li className="hover:text-blue-600 cursor-pointer">Settings</li>
-                <li className="hover:text-blue-600 cursor-pointer">Logout</li>
-              </ul>
-            </div>
-          )}
+        
         </div>
       </div>
     </header>
