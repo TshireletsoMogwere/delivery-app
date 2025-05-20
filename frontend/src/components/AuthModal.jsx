@@ -1,16 +1,18 @@
 import { useState } from "react";
 
+const BACKEND_URL = "https://backend-k2kh.onrender.com";
+
 export default function AuthModal({ isOpen, onClose }) {
   const [isSignup, setIsSignup] = useState(true);
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
-    phone_number:"",
+    phone_number: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
@@ -20,8 +22,16 @@ export default function AuthModal({ isOpen, onClose }) {
     e.preventDefault();
 
     const url = isSignup
-      ? "http://localhost:5000/api/auth/register"
-      : "http://localhost:5000/api/auth/login";
+      ? `${BACKEND_URL}/api/auth/register`
+      : `${BACKEND_URL}/api/auth/login`;
+
+    // For login, send only email and password
+    const payload = isSignup
+      ? formData
+      : {
+          email: formData.email,
+          password: formData.password,
+        };
 
     try {
       const res = await fetch(url, {
@@ -29,7 +39,7 @@ export default function AuthModal({ isOpen, onClose }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();
@@ -80,15 +90,26 @@ export default function AuthModal({ isOpen, onClose }) {
         {/* Form */}
         <form onSubmit={handleSubmit}>
           {isSignup && (
-            <input
-              type="text"
-              name="full_name"
-              placeholder="Full name"
-              value={formData.full_name}
-              onChange={handleChange}
-              className="w-full mb-3 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-              required
-            />
+            <>
+              <input
+                type="text"
+                name="full_name"
+                placeholder="Full name"
+                value={formData.full_name}
+                onChange={handleChange}
+                className="w-full mb-3 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                required
+              />
+              <input
+                type="text"
+                name="phone_number"
+                placeholder="Phone Number"
+                value={formData.phone_number}
+                onChange={handleChange}
+                className="w-full mb-3 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                required
+              />
+            </>
           )}
           <input
             type="email"
@@ -99,15 +120,6 @@ export default function AuthModal({ isOpen, onClose }) {
             className="w-full mb-3 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
             required
           />
-             <input
-      type="text"
-      name="phone_number"
-      placeholder="Phone Number"
-      value={formData.phone_number}
-      onChange={handleChange}
-      className="w-full mb-3 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-      required
-    />
           <input
             type="password"
             name="password"
