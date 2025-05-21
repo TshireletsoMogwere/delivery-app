@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const BACKEND_URL = "https://backend-k2kh.onrender.com";
+// const BACKEND_URL = "https://backend-k2kh.onrender.com";
 
 export default function AuthModal({ isOpen, onClose }) {
   const [isSignup, setIsSignup] = useState(true);
@@ -22,8 +22,8 @@ export default function AuthModal({ isOpen, onClose }) {
     e.preventDefault();
 
     const url = isSignup
-      ? `${BACKEND_URL}/api/auth/register`
-      : `${BACKEND_URL}/api/auth/login`;
+      ? `https://backend-k2kh.onrender.com/api/auth/register`
+      : `https://backend-k2kh.onrender.com/api/auth/login`;
 
     // For login, send only email and password
     const payload = isSignup
