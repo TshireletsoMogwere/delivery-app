@@ -8,11 +8,10 @@ exports.register = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // await db.execute(
-    //   'INSERT INTO users (full_name, email, phone_number, password) VALUES (?, ?, ?, ?)',
-    //   [full_name, email, phone_number, hashedPassword]
-    // );
-    res.json({ message: "successfully reached the register post route" });
+    await db.execute(
+      'INSERT INTO users (full_name, email, phone_number, password) VALUES (?, ?, ?, ?)',
+      [full_name, email, phone_number, hashedPassword]
+    );
 
     res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
