@@ -3,9 +3,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
-  const { full_name, email, phone_number, password } = req.body;
-
   try {
+    if (!req.body) return res.status(400).json({ error: 'Missing request body' });
+
+    const { full_name, email, phone_number, password } = req.body;
+
+    if (!full_name || !email || !phone_number || !password) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.execute(
@@ -16,14 +22,20 @@ exports.register = async (req, res) => {
     res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'User Already Exists' });
+    res.status(500).json({ error: 'User Already Exists or Server Error' });
   }
 };
 
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
-
   try {
+    if (!req.body) return res.status(400).json({ error: 'Missing request body' });
+
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password are required' });
+    }
+
     const [rows] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
 
     if (rows.length === 0) return res.status(400).json({ error: 'Invalid credentials' });
