@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { products } from "../data/prducts";
 import ProductCard from "../components/ProductCard";
-import SearchBar from "../components/SearchBar"; // ✅ Import here
+import SearchBar from "../components/SearchBar"; 
 
 export default function ProductList() {
   const [query, setQuery] = useState("");
 
   const filteredProducts = products.filter((p) =>
-    p.name.toLowerCase().includes(query.toLowerCase()) // make sure `name` exists
+    p.name.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
