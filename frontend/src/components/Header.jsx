@@ -34,6 +34,13 @@ export default function Header() {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const toggleProfileMenu = () => {
     setIsAuthOpen(true);
   };
@@ -98,8 +105,9 @@ export default function Header() {
                     className="text-gray-600 group-hover:text-blue-600"
                   />
                   <span className="text-gray-700 group-hover:text-blue-600 font-medium">
-                    Account
+                   Account
                   </span>
+
                   <ChevronDown
                     size={16}
                     className={`text-gray-500 transition-transform duration-200 ${
@@ -119,9 +127,6 @@ export default function Header() {
                         <div>
                           <p className="font-semibold text-gray-800">
                             Welcome!
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            Manage your account
                           </p>
                         </div>
                       </div>

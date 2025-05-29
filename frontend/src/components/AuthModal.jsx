@@ -9,7 +9,6 @@ import {
   Phone,
   CheckCircle,
   AlertCircle,
-  Loader2,
 } from "lucide-react";
 
 export default function AuthModal({ isOpen, onClose }) {
@@ -26,7 +25,6 @@ export default function AuthModal({ isOpen, onClose }) {
     confirmPassword: "",
   });
 
-  // Reset form when modal opens/closes or when switching tabs
   useEffect(() => {
     if (isOpen) {
       setFormData({
@@ -42,7 +40,6 @@ export default function AuthModal({ isOpen, onClose }) {
     }
   }, [isOpen, isSignup]);
 
-  // Close modal on Escape key
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape" && isOpen) {
@@ -109,7 +106,6 @@ export default function AuthModal({ isOpen, onClose }) {
       [name]: value,
     }));
 
-    // Clear specific field error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -121,9 +117,7 @@ export default function AuthModal({ isOpen, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsLoading(true);
     setErrors({});
@@ -133,7 +127,6 @@ export default function AuthModal({ isOpen, onClose }) {
       ? `https://backend-k2kh.onrender.com/api/auth/register`
       : `https://backend-k2kh.onrender.com/api/auth/login`;
 
-    // For login, send only email and password
     const payload = isSignup
       ? {
           full_name: formData.full_name.trim(),
@@ -149,16 +142,13 @@ export default function AuthModal({ isOpen, onClose }) {
     try {
       const res = await fetch(url, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        // Handle specific error messages from backend
         if (data.errors && Array.isArray(data.errors)) {
           const fieldErrors = {};
           data.errors.forEach((error) => {
@@ -179,15 +169,12 @@ export default function AuthModal({ isOpen, onClose }) {
             : "Login successful!"
         );
 
-        // Store token if provided
         if (data.token) {
           localStorage.setItem("authToken", data.token);
         }
 
-        // Close modal after success
         setTimeout(() => {
           onClose();
-          // Reload page or redirect as needed
           if (!isSignup) {
             window.location.reload();
           }
@@ -285,9 +272,6 @@ export default function AuthModal({ isOpen, onClose }) {
               <>
                 {/* Full Name */}
                 <div>
-                  {/* <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Full Name
-                  </label> */}
                   <div className="relative">
                     <User
                       size={20}
@@ -299,26 +283,18 @@ export default function AuthModal({ isOpen, onClose }) {
                       placeholder="Enter your full name"
                       value={formData.full_name}
                       onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                        errors.full_name
-                          ? "border-red-300 bg-red-50"
-                          : "border-gray-300"
+                      className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                        errors.full_name ? "border-red-500" : "border-gray-300"
                       }`}
-                      disabled={isLoading}
                     />
                   </div>
                   {errors.full_name && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors.full_name}
-                    </p>
+                    <p className="text-red-600 text-xs mt-1">{errors.full_name}</p>
                   )}
                 </div>
 
                 {/* Phone Number */}
                 <div>
-                  {/* <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone Number
-                  </label> */}
                   <div className="relative">
                     <Phone
                       size={20}
@@ -330,18 +306,13 @@ export default function AuthModal({ isOpen, onClose }) {
                       placeholder="Enter your phone number"
                       value={formData.phone_number}
                       onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                        errors.phone_number
-                          ? "border-red-300 bg-red-50"
-                          : "border-gray-300"
+                      className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                        errors.phone_number ? "border-red-500" : "border-gray-300"
                       }`}
-                      disabled={isLoading}
                     />
                   </div>
                   {errors.phone_number && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors.phone_number}
-                    </p>
+                    <p className="text-red-600 text-xs mt-1">{errors.phone_number}</p>
                   )}
                 </div>
               </>
@@ -349,9 +320,6 @@ export default function AuthModal({ isOpen, onClose }) {
 
             {/* Email */}
             <div>
-              {/* <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email Address
-              </label> */}
               <div className="relative">
                 <Mail
                   size={20}
@@ -363,24 +331,18 @@ export default function AuthModal({ isOpen, onClose }) {
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                    errors.email
-                      ? "border-red-300 bg-red-50"
-                      : "border-gray-300"
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    errors.email ? "border-red-500" : "border-gray-300"
                   }`}
-                  disabled={isLoading}
                 />
               </div>
               {errors.email && (
-                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                <p className="text-red-600 text-xs mt-1">{errors.email}</p>
               )}
             </div>
 
             {/* Password */}
             <div>
-              {/* <label className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label> */}
               <div className="relative">
                 <Lock
                   size={20}
@@ -392,55 +354,44 @@ export default function AuthModal({ isOpen, onClose }) {
                   placeholder="Enter your password"
                   value={formData.password}
                   onChange={handleChange}
-                  className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                    errors.password
-                      ? "border-red-300 bg-red-50"
-                      : "border-gray-300"
+                  className={`w-full pl-10 pr-10 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    errors.password ? "border-red-500" : "border-gray-300"
                   }`}
-                  disabled={isLoading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
               {errors.password && (
-                <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+                <p className="text-red-600 text-xs mt-1">{errors.password}</p>
               )}
             </div>
 
-            {/* Confirm Password (Signup only) */}
+            {/* Confirm Password */}
             {isSignup && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Confirm Password
-                </label>
                 <div className="relative">
                   <Lock
                     size={20}
                     className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                   />
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="confirmPassword"
                     placeholder="Confirm your password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                      errors.confirmPassword
-                        ? "border-red-300 bg-red-50"
-                        : "border-gray-300"
+                    className={`w-full pl-10 pr-10 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.confirmPassword ? "border-red-500" : "border-gray-300"
                     }`}
-                    disabled={isLoading}
                   />
                 </div>
                 {errors.confirmPassword && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors.confirmPassword}
-                  </p>
+                  <p className="text-red-600 text-xs mt-1">{errors.confirmPassword}</p>
                 )}
               </div>
             )}
@@ -449,41 +400,17 @@ export default function AuthModal({ isOpen, onClose }) {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 disabled:from-gray-400 disabled:to-gray-400 text-white py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition"
             >
-              {isLoading ? (
-                <>
-                  <Loader2 size={20} className="animate-spin" />
-                  <span>
-                    {isSignup ? "Creating Account..." : "Signing In..."}
-                  </span>
-                </>
-              ) : (
-                <span>{isSignup ? "Create Account" : "Sign In"}</span>
-              )}
+              {isLoading
+                ? isSignup
+                  ? "Signing Up..."
+                  : "Logging In..."
+                : isSignup
+                ? "Sign Up"
+                : "Login"}
             </button>
           </form>
-
-          {/* Footer */}
-          {!isSignup && (
-            <div className="text-center mt-4">
-              <button className="text-blue-600 hover:text-blue-500 text-sm font-medium">
-                Forgot your password?
-              </button>
-            </div>
-          )}
-
-          <div className="text-center mt-6 pt-4 border-t border-gray-200">
-            <p className="text-sm text-gray-600">
-              {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
-              <button
-                onClick={() => switchMode(!isSignup)}
-                className="text-blue-600 hover:text-blue-500 font-medium"
-              >
-                {isSignup ? "Sign in" : "Sign up"}
-              </button>
-            </p>
-          </div>
         </div>
       </div>
     </div>

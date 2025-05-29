@@ -1,4 +1,60 @@
 export const products = [
+  {
+      id: "21",
+      name: "Electronics Safe Box",
+      price: 170,
+      description: "Shockproof box for electronics.",
+      image: "https://secureshield.co.za/cdn/shop/files/45cm_safes.jpg?v=1741777129&width=990"
+    },
+    {
+      id: "22",
+      name: "Plant Carrier",
+      price: 100,
+      description: "Stable carrier for potted plants.",
+      image: "https://m.media-amazon.com/images/I/71lhgYYsMaL._AC_SX679_.jpg"
+    },
+    {
+      id: "23",
+      name: "Suitcase Delivery",
+      price: 210,
+      description: "Ideal for luggage transport.",
+      image: "https://www.pssremovals.com/wp-content/uploads/2023/07/luggage-shipping.jpg"
+    },
+    {
+      id: "24",
+      name: "Sports Equipment Bag",
+      price: 150,
+      description: "Carries sports gear safely.",
+      image: "https://cdn1.brandability.co.za/2017/05/14125108/Large-Sports-Bag-Navy-260x260.webp"
+    },
+   {
+      id: "17",
+      name: "Book Mailer",
+      price: 60,
+      description: "Protective packaging for books.",
+      image: "https://cdn.shopify.com/s/files/1/1040/9688/files/3-book-box_1024x1024.jpg?v=1649498443"
+    },
+    {
+      id: "18",
+      name: "Jewelry Box",
+      price: 105,
+      description: "Secure box for valuable items.",
+      image: "https://www.polkadotbox.co.za/wp-content/uploads/jewellery-box-2.jpg"
+    },
+    {
+      id: "19",
+      name: "Shoe Box",
+      price: 80,
+      description: "Standard box for footwear deliveries.",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5aEihiqX6dVHD_blvt8sK5RGUH8gvJbJCNg&s"
+    },
+    {
+      id: "20",
+      name: "Gift Wrap Box",
+      price: 90,
+      description: "Elegant packaging for gifts.",
+      image: "https://m.media-amazon.com/images/I/71oyEZZW8+L._AC_SX679_.jpg"
+    },
     {
       id: "1",
       name: "Document Envelope",
@@ -13,20 +69,7 @@ export const products = [
       description: "Fits gadgets and accessories.",
       image: "https://cdn1.brandability.co.za/2025/371640/Altitude%20Bosley%20Gift%20Box%20A%20Open-519x519.webp"
     },
-    {
-      id: "3",
-      name: "Medium Parcel",
-      price: 150,
-      description: "Great for clothing and electronics.",
-      image: "https://wrapit.co.za/wp-content/uploads/2023/08/IMG_3105-Edit-scaled.jpg"
-    },
-    {
-      id: "4",
-      name: "Large Crate",
-      price: 200,
-      description: "Bulky item transport made easy.",
-      image: "https://seacan.com/wp-content/uploads/2024/10/DSCN0795.webp"
-    },
+   
     {
       id: "5",
       name: "Tube Container",
@@ -68,6 +111,20 @@ export const products = [
       price: 130,
       description: "Padded bag for laptops and tablets.",
       image: "https://media.takealot.com/covers_images/81e020e0f24b464ca31066ddbc005035/s-zoom.file"
+    },
+     {
+      id: "3",
+      name: "Medium Parcel",
+      price: 150,
+      description: "Great for clothing and electronics.",
+      image: "https://wrapit.co.za/wp-content/uploads/2023/08/IMG_3105-Edit-scaled.jpg"
+    },
+    {
+      id: "4",
+      name: "Large Crate",
+      price: 200,
+      description: "Bulky item transport made easy.",
+      image: "https://seacan.com/wp-content/uploads/2024/10/DSCN0795.webp"
     },
     {
       id: "11",
@@ -111,62 +168,8 @@ export const products = [
       description: "Maintains cold temperatures for perishables.",
       image: "https://5.imimg.com/data5/SELLER/Default/2021/10/SD/KT/HE/2348916/cold-chain-and-packaging-shipper-500x500.jpeg"
     },
-    {
-      id: "17",
-      name: "Book Mailer",
-      price: 60,
-      description: "Protective packaging for books.",
-      image: "https://cdn.shopify.com/s/files/1/1040/9688/files/3-book-box_1024x1024.jpg?v=1649498443"
-    },
-    {
-      id: "18",
-      name: "Jewelry Box",
-      price: 105,
-      description: "Secure box for valuable items.",
-      image: "https://www.polkadotbox.co.za/wp-content/uploads/jewellery-box-2.jpg"
-    },
-    {
-      id: "19",
-      name: "Shoe Box",
-      price: 80,
-      description: "Standard box for footwear deliveries.",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5aEihiqX6dVHD_blvt8sK5RGUH8gvJbJCNg&s"
-    },
-    {
-      id: "20",
-      name: "Gift Wrap Box",
-      price: 90,
-      description: "Elegant packaging for gifts.",
-      image: "https://m.media-amazon.com/images/I/71oyEZZW8+L._AC_SX679_.jpg"
-    },
-    {
-      id: "21",
-      name: "Electronics Safe Box",
-      price: 170,
-      description: "Shockproof box for electronics.",
-      image: "https://secureshield.co.za/cdn/shop/files/45cm_safes.jpg?v=1741777129&width=990"
-    },
-    {
-      id: "22",
-      name: "Plant Carrier",
-      price: 100,
-      description: "Stable carrier for potted plants.",
-      image: "https://m.media-amazon.com/images/I/71lhgYYsMaL._AC_SX679_.jpg"
-    },
-    {
-      id: "23",
-      name: "Suitcase Delivery",
-      price: 210,
-      description: "Ideal for luggage transport.",
-      image: "https://www.pssremovals.com/wp-content/uploads/2023/07/luggage-shipping.jpg"
-    },
-    {
-      id: "24",
-      name: "Sports Equipment Bag",
-      price: 150,
-      description: "Carries sports gear safely.",
-      image: "https://cdn1.brandability.co.za/2017/05/14125108/Large-Sports-Bag-Navy-260x260.webp"
-    },
+   
+    
     {
       id: "25",
       name: "Toolbox Courier",
