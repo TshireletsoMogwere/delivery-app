@@ -123,7 +123,7 @@ export default function Home() {
       )}
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6">
+      <section className="relative min-h-screen flex items-center justify-center px-6 mt-14">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-6">
             <h1 className="text-5xl md:text-7xl font-bold leading-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
@@ -142,7 +142,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom-10 duration-700 delay-600">
-            <Link to="/productlist">
+            <Link to="/clientdashboard">
               <button className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
                 <span>Start Delivering Now</span>
                 <ArrowRight
