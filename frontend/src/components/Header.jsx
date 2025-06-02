@@ -228,8 +228,7 @@ export default function Header() {
       {/* Auth Modal */}
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
 
-      {/* Spacer to prevent content from hiding behind fixed header */}
-      <div className="h-20"></div>
+ 
     </>
   );
 }
