@@ -23,6 +23,7 @@ export default function AuthModal({ isOpen, onClose }) {
     phone_number: "",
     password: "",
     confirmPassword: "",
+    role: "",
   });
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function AuthModal({ isOpen, onClose }) {
         phone_number: "",
         password: "",
         confirmPassword: "",
+        role: "",
       });
       setErrors({});
       setSuccessMessage("");
@@ -87,6 +89,13 @@ export default function AuthModal({ isOpen, onClose }) {
         newErrors.phone_number = "Please enter a valid phone number";
       }
 
+      // Role validation
+      if (!formData.role) {
+        newErrors.role = "Role is required";
+      } else if (!["client", "driver"].includes(formData.role)) {
+        newErrors.role = "Role must be one of adminor driver";
+      }
+
       // Confirm password validation
       if (!formData.confirmPassword) {
         newErrors.confirmPassword = "Please confirm your password";
@@ -133,6 +142,7 @@ export default function AuthModal({ isOpen, onClose }) {
           email: formData.email.toLowerCase().trim(),
           phone_number: formData.phone_number.trim(),
           password: formData.password,
+          role: formData.role,
         }
       : {
           email: formData.email.toLowerCase().trim(),
@@ -289,7 +299,9 @@ export default function AuthModal({ isOpen, onClose }) {
                     />
                   </div>
                   {errors.full_name && (
-                    <p className="text-red-600 text-xs mt-1">{errors.full_name}</p>
+                    <p className="text-red-600 text-xs mt-1">
+                      {errors.full_name}
+                    </p>
                   )}
                 </div>
 
@@ -307,12 +319,16 @@ export default function AuthModal({ isOpen, onClose }) {
                       value={formData.phone_number}
                       onChange={handleChange}
                       className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        errors.phone_number ? "border-red-500" : "border-gray-300"
+                        errors.phone_number
+                          ? "border-red-500"
+                          : "border-gray-300"
                       }`}
                     />
                   </div>
                   {errors.phone_number && (
-                    <p className="text-red-600 text-xs mt-1">{errors.phone_number}</p>
+                    <p className="text-red-600 text-xs mt-1">
+                      {errors.phone_number}
+                    </p>
                   )}
                 </div>
               </>
@@ -386,15 +402,45 @@ export default function AuthModal({ isOpen, onClose }) {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     className={`w-full pl-10 pr-10 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      errors.confirmPassword ? "border-red-500" : "border-gray-300"
+                      errors.confirmPassword
+                        ? "border-red-500"
+                        : "border-gray-300"
                     }`}
                   />
                 </div>
                 {errors.confirmPassword && (
-                  <p className="text-red-600 text-xs mt-1">{errors.confirmPassword}</p>
+                  <p className="text-red-600 text-xs mt-1">
+                    {errors.confirmPassword}
+                  </p>
                 )}
               </div>
             )}
+            {isSignup && (
+  <div>
+    <label
+      htmlFor="role"
+      className="block mb-1 font-medium text-gray-700"
+    >
+      Select Role
+    </label>
+    <select
+      id="role"
+      name="role"
+      value={formData.role}
+      onChange={handleChange}
+      className={`w-full py-3 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+        errors.role ? "border-red-500" : "border-gray-300"
+      }`}
+    >
+      <option value="">-- Select a role --</option>
+      <option value="client">Client</option>
+      <option value="driver">Driver</option>
+    </select>
+    {errors.role && (
+      <p className="text-red-600 text-xs mt-1">{errors.role}</p>
+    )}
+  </div>
+)}
 
             {/* Submit Button */}
             <button
