@@ -4,6 +4,7 @@ import Home from "./pages/Home";
  import Track from "./pages/Track";
 import ClientDashboard from "./pages/ClientDashboard";
 import Order from "./pages/Order";
+import Deliver from "./components/Deliver";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/track" element={<Track />} />
         <Route path="/clientdashboard" element={<ClientDashboard />} />
         <Route path="/order/:id" element={<Order />} />
+            <Route path="deliver" element={<Deliver />} />
       </Routes>
     </div>
   );

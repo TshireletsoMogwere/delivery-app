@@ -49,7 +49,7 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* Action Button */}
-        <Link to={`/order/${product.id}`}>
+        <Link to='/deliver'>
           <button className="w-34 mt-2 group/btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl hover:shadow-blue-500/25 flex items-center justify-center space-x-2">
             <span>Deliver Now</span>
             <ArrowRight

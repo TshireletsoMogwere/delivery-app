@@ -23,9 +23,11 @@ export default function ClientDashboard() {
               Create a new delivery request, drop off your package at a taxi
               rank, and track it all the way to the destination.
             </p>
+            <Link to='/deliver'>
             <button className="bg-[#0F172A] text-white w-full py-2 rounded-lg font-medium hover:bg-[#1E293B]">
               Create Delivery
             </button>
+             </Link>
           </div>
 
           {/* Track Deliveries */}
